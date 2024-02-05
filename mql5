@@ -1,0 +1,71 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                                       Market Structure MT5 |
+//|                                   https://www.forexroboteasy.com |
+//|                                            Developed by Forex Robot Easy Team |
+//+------------------------------------------------------------------+
+
+// Define necessary constants
+#define SCAN_BUTTON 10001 // Scanner button ID
+
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+   // Create scanner button
+   if(!ButtonCreate(0, SCAN_BUTTON, 0, 0, 100, 30, 'Scanner', false))
+   {
+      Print('Failed to create scanner button!');
+      return INIT_FAILED;
+   }
+
+   // Set chart properties
+   ChartSetInteger(0, CHART_FOREGROUND, White);
+   ChartSetInteger(0, CHART_GRID, true);
+   ChartSetInteger(0, CHART_AUTOSCROLL, true);
+   
+   return INIT_SUCCEEDED;
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator deinitialization function                       |
+//+------------------------------------------------------------------+
+void OnDeinit(const int reason)
+{
+   // Destroy scanner button
+   ButtonDestroy(0, SCAN_BUTTON);
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                              |
+//+------------------------------------------------------------------+
+void OnCalculate(const int rates_total,
+                 const int prev_calculated,
+                 const datetime &time[],
+                 const double &open[],
+                 const double &high[],
+                 const double &low[],
+                 const double &close[],
+                 const long &tick_volume[],
+                 const long &volume[],
+                 const int &spread[])
+{
+   // Check if scanner button is pressed
+   if(ButtonGetState(0, SCAN_BUTTON))
+   {
+      // Perform comprehensive Forex market analysis
+      // ...
+
+      // Print market structures and trading opportunities
+      Print('Market Trends: ');
+      // ...
+      Print('Price Fluctuations: ');
+      // ...
+      Print('Trading Opportunities: ');
+      // ...
+
+      // Reset scanner button state
+      ButtonSetState(0, SCAN_BUTTON, false);
+   }
+}
